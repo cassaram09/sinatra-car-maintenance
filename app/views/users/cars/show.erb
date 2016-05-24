@@ -7,3 +7,8 @@
 <p><%= @car.transmission %></p>
 <p><%= @car.year %></p>
 <p><%= @car.miles %></p>
+
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/delete">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Car">
+</form>
