@@ -1,0 +1,14 @@
+<h1>User Dashboard</h1>
+
+<% if flash.has?(:message) %>
+  <p><%= flash[:message] %></p>
+<% end %>
+
+<a href="<%= @user.slug %>/games">View all games</a>
+</br>
+</br>
+<a href="<%= @user.slug %>/games/new">Add a game</a>
+</br>
+</br>
+<h2> You Recent Games </h2>
+

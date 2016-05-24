@@ -1,0 +1,50 @@
+<h1>Add Game</h1>
+
+<form method="POST" action="/users/:slug/games">
+  <label for="date">Date</label>
+    <input type="text" name="date" id="datepicker">
+    <br/>
+    <br/>
+  <p>
+<<<<<<< HEAD
+  <input type="checkbox" id="toggle" name="draw" value="draw"/><label for="toggle">Draw?</label>
+  </p>
+
+  <div class="draw">
+    <label>Against:</label> 
+=======
+
+  <input type="checkbox" id="toggle"/><label for="toggle">Show/Hide</label>
+<div id="block">
+  <label>Winner?:</label> 
+>>>>>>> parent of 440d7a8... changed model and migrations so draws can belong to more than one user
+    <select name="players[][id]">
+      <option disabled selected value> -- select Player -- </option>
+      <% User.all.each do |user| %>
+        <option value="<%= user.id %>"> <%= user.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="win-lose">
+  <label>Winner:</label> 
+    <select name="winner[id]">
+      <option disabled selected value> -- select Player -- </option>
+      <% User.all.each do |user| %>
+        <option value="<%= user.id %>"> <%= user.name %></option>
+      <% end %>
+    </select>
+    <br/>
+    <br/>
+    <label>Loser:</label> 
+    <select name="loser[id]">
+      <option disabled selected value> -- select Player -- </option>
+      <% User.all.each do |user| %>
+        <option value="<%= user.id %>"> <%= user.name %></option>
+      <% end %>
+    </select>
+  
+  </div>
+    <br/>
+    <input type="submit" value="Create" id="create">
+</form>
