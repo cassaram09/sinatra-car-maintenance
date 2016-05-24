@@ -32,7 +32,6 @@ class ApplicationController < Sinatra::Base
 
   #Send login credentials to database
   post '/login' do
-    binding.pry
     if !params.has_value?("") #if any field is blank, throw an error and reload the page
       @user = User.find_by(email: params[:email])
       if @user && @user.authenticate(params[:password])

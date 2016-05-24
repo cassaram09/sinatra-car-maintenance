@@ -1,1 +1,9 @@
-<%= @car.make %>
+
+<a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit">edit <%= @car.make %> <%= @car.car_model %></a>
+
+<p><%= @car.make %></p>
+<p><%= @car.car_model %></p>
+<p><%= @car.color %></p>
+<p><%= @car.transmission %></p>
+<p><%= @car.year %></p>
+<p><%= @car.miles %></p>

@@ -46,11 +46,16 @@ class CarsController < ApplicationController
   get '/users/:slug/cars/:id/edit' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    
+    @car = Car.find_by(params[:id])
+    erb :'/users/cars/edit'
   end
 
-  patch '/users/:slug/cars/:id/' do
-    #edit game
+  patch '/users/:slug/cars/:id' do
+    @user = User.find_by_slug(params[:slug])
+    @current = Helpers.current_user(session)
+    @car = Car.find_by(params[:id])
+    @car.update(params[:car])
+    redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
   delete '/users/cars/:id/delete' do

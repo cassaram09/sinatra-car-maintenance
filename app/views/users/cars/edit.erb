@@ -1,0 +1,27 @@
+<h1>Edit <%= @car.make%> <%= @car.car_model %>  </h1>
+
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>">
+  <input type="hidden" name="_method" value="patch">
+  <label>Make</label>
+    <input type="text" name="car[make]" value="<%= @car.make%>">
+  <label>Model</label>
+    <input type="text" name="car[car_model]" value="<%= @car.car_model %>">
+  <label>Color</label>
+    <input type="text" name="car[color]" value="<%= @car.color%>">
+  <label>Transmission</label>
+    <select name="car[transmission]" value="<%= @car.transmission%>">
+      <option>Manual</option>
+      <option>Automatic</option>
+    </select>
+  <label>Year</label>
+    <select name="car[year]">
+     <% i = 1900 %>
+     <% while i <= 2016 %>
+       <option <%='selected' if i == @car.year%>> <%=i%> </option>
+      <% i += 1 %>
+      <% end %>
+    </select>
+  <label>Miles</label>
+    <input type="text" name="car[miles]" value="<%= @car.miles%>">
+  <input type="submit" value="Update Car" id="create">
+</form>

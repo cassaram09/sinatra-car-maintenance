@@ -1,10 +1,10 @@
 <h1>Add Car</h1>
 
-<form method="POST" action="/users/:slug/cars">
+<form method="POST" action="/users/<%= @user.id %>/cars">
   <label>Make</label>
     <input type="text" name="car[make]">
   <label>Model</label>
-    <input type="text" name="car[model]">
+    <input type="text" name="car[car_model]">
   <label>Color</label>
     <input type="text" name="car[color]">
   <label>Transmission</label>
