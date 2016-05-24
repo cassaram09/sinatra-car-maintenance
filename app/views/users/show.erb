@@ -9,3 +9,7 @@
 </br>
 <h2> Your Cars </h2>
 
+<% @user.cars.each do |car| %>
+  <%= car.make %> - <%= car.model %>
+  <% end %>
+

@@ -2,18 +2,18 @@
 
 <form method="POST" action="/users/:slug/cars">
   <label>Make</label>
-    <input type="text" name="make">
+    <input type="text" name="car[make]">
   <label>Model</label>
-    <input type="text" name="model">
+    <input type="text" name="car[model]">
   <label>Color</label>
-    <input type="text" name="color">
+    <input type="text" name="car[color]">
   <label>Transmission</label>
-    <select name="transmission">
+    <select name="car[transmission]">
       <option>Manual</option>
       <option>Automatic</option>
     </select>
   <label>Year</label>
-    <select name="year">
+    <select name="car[year]">
      <% i = 1900 %>
      <% while i <= 2016 %>
        <option <%='selected' if i == 2016%>> <%=i%> </option>
@@ -21,6 +21,6 @@
       <% end %>
     </select>
   <label>Miles</label>
-    <input type="text" name="make">
+    <input type="text" name="car[miles]">
   <input type="submit" value="Add Car" id="create">
 </form>
