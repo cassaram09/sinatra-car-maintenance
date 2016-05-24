@@ -44,16 +44,17 @@ class CarsController < ApplicationController
   end
 
   get '/users/:slug/cars/:id/edit' do
+    binding.pry
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
+    @car = Car.find_by(id: params[:id])
     erb :'/users/cars/edit'
   end
 
   patch '/users/:slug/cars/:id' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
+    @car = Car.find_by(id: params[:id])
     @car.update(params[:car])
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
@@ -61,7 +62,7 @@ class CarsController < ApplicationController
   delete '/users/:slug/cars/:id/delete' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
+    @car = Car.find_by(id: params[:id])
     @car.delete
     redirect "/users/#{@user.slug}"
   end
