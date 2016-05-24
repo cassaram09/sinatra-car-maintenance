@@ -1,34 +1,22 @@
-<h1>Edit <%= @car.make%> <%= @car.car_model %>  </h1>
+<h1>Edit Maintenance Task</h1>
 
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>">
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/<%= @maintenance.id %>">
   <input type="hidden" name="_method" value="patch">
-  <label>Make</label>
-    <input type="text" name="car[make]" value="<%= @car.make%>">
-  <label>Model</label>
-    <input type="text" name="car[car_model]" value="<%= @car.car_model %>">
-  <label>Color</label>
-    <input type="text" name="car[color]" value="<%= @car.color%>">
-  <label>Transmission</label>
-    <select name="car[transmission]" value="<%= @car.transmission%>">
-      <option>Manual</option>
-      <option>Automatic</option>
-    </select>
-  <label>Year</label>
-    <select name="car[year]">
-     <% i = 1900 %>
-     <% while i <= 2016 %>
-       <option <%='selected' if i == @car.year%>> <%=i%> </option>
-      <% i += 1 %>
+  <label>Task</label>
+    <select name="maintenance[name]">
+      <% Helpers.tasks.each do |task| %>
+        <option> <%= task %> </option>
       <% end %>
     </select>
-  <label>Miles</label>
-    <input type="text" name="car[miles]" value="<%= @car.miles%>">
-  <input type="submit" value="Update Car" id="create">
+  <label>Performed on Date:</label>
+    <input type="text" id="datepicker" name="maintenance[date]" value="<%= @maintenance.date %>" required>
+  <input type="submit" value="Edit Maintenance">
 </form>
 
+
 <p>
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/delete">
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= @maintenance.id %>/delete">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Car">
+  <input type="submit" value="Delete Maintenance Task">
 </form>
 </p>

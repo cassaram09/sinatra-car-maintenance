@@ -7,7 +7,8 @@ class MaintenancesController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     if @current.id == @user.id
-      erb :'/users/cars/new'
+      @car = Car.find_by(params[:id])
+      erb :'/users/cars/maintenance/new'
     else
       redirect "/users/#{@current.slug}"
     end
@@ -16,8 +17,9 @@ class MaintenancesController < ApplicationController
   post '/users/:slug/cars/:id/maintenance/' do
     binding.pry
     @user = Helpers.current_user(session)
-    @car = Car.create(params[:car])
-    @car.update(user_id: @user.id)
+    @car = Car.find_by(params[:id])
+    @maintenance = Maintenance.create(params[:maintenance])
+    @maintenance.update(car_id: @car.id)
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
@@ -25,34 +27,30 @@ class MaintenancesController < ApplicationController
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     if @current.id = @user.id
-      @car = Car.find_by(id: params[:id])
-      erb :'/users/cars/show'
+      @car = Car.find_by(id: params[:captures][1])
+      @maintenance = Maintenance.find_by(id: params[:captures][2])
+      erb :'/users/cars/maintenance/edit'
     else
       redirect "/users/#{@current.slug}"
     end
   end
 
-  get '/users/:slug/cars/:id/maintenance/:id/edit' do
+  patch '/users/:slug/cars/:id/maintenance/:id' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
-    erb :'/users/cars/edit'
-  end
-
-  patch '/users/:slug/cars/:id' do
-    @user = User.find_by_slug(params[:slug])
-    @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
-    @car.update(params[:car])
+    @car = Car.find_by(id: params[:captures][1])
+      @maintenance = Maintenance.find_by(id: params[:captures][2])
+    @maintenance.update(params[:maintenance])
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
   delete '/users/:slug/cars/:id/maintenance/:id/delete' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    @car = Car.find_by(params[:id])
-    @car.delete
-    redirect "/users/#{@user.slug}"
+    @car = Car.find_by(id: params[:captures][1])
+    @maintenance = Maintenance.find_by(id: params[:captures][2])
+    @maintenance.delete
+    redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
 end

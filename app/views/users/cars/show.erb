@@ -11,9 +11,10 @@
 
 <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/new">Add maintenance task</a>
 
-<% @car.maintenances.each do |maintenance| %>
 
-  <%= maintenance.name %> peformed on <%= maintenance.date %>
+<% @car.maintenances.reverse.each do |maintenance| %>
+
+  <p><%= maintenance.name %> peformed on <%= maintenance.date %> <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit task</a> </p>
 
 <%end%>
 

@@ -1,26 +1,15 @@
-<h1>Add Car</h1>
+<h1>Add Maintenance Task</h1>
 
-<form method="POST" action="/users/<%= @user.id %>/cars">
-  <label>Make</label>
-    <input type="text" name="car[make]">
-  <label>Model</label>
-    <input type="text" name="car[car_model]">
-  <label>Color</label>
-    <input type="text" name="car[color]">
-  <label>Transmission</label>
-    <select name="car[transmission]">
-      <option>Manual</option>
-      <option>Automatic</option>
-    </select>
-  <label>Year</label>
-    <select name="car[year]">
-     <% i = 1900 %>
-     <% while i <= 2016 %>
-       <option <%='selected' if i == 2016%>> <%=i%> </option>
-      <% i += 1 %>
+
+
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/">
+  <label>Task</label>
+    <select name="maintenance[name]">
+      <% Helpers.tasks.each do |task| %>
+        <option> <%= task %> </option>
       <% end %>
     </select>
-  <label>Miles</label>
-    <input type="text" name="car[miles]">
-  <input type="submit" value="Add Car" id="create">
+  <label>Performed on Date:</label>
+    <input type="text" id="datepicker" name="maintenance[date]" required>
+  <input type="submit" value="Add Maintenance">
 </form>
