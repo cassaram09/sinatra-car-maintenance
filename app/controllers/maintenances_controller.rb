@@ -8,8 +8,8 @@ class MaintenancesController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(params[:id])
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         erb :'/users/cars/maintenance/new'
       else
         redirect "/users/#{@current.slug}"
@@ -24,8 +24,8 @@ class MaintenancesController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      @car = Car.find_by(params[:id])
-      if @current.id == @user.id
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         params[:maintenance].each do |maintenance|
           if maintenance[:name] == "" || maintenance[:date] == ""
             next
@@ -44,12 +44,13 @@ class MaintenancesController < ApplicationController
 
   #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/:id' do
+    binding.pry
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:captures][1])
-        @maintenance = Maintenance.find_by(id: params[:captures][2])
+      @car = Car.find_by(id: params[:captures][1])
+      @maintenance = Maintenance.find_by(id: params[:captures][2])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
         erb :'/users/cars/maintenance/edit'
       else
         redirect "/users/#{@current.slug}"
@@ -72,13 +73,13 @@ class MaintenancesController < ApplicationController
   patch '/users/:slug/cars/:id/maintenance/:id' do
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
-      @car = Car.find_by(id: params[:captures][1])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
+      @car = Car.find_by(id: params[:captures][1])
+      @maintenance = Maintenance.find_by(id: params[:captures][2])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id) 
         if params[:maintenance][:name] == "" || params[:maintenance][:date] == ""
           redirect "/users/#{@user.slug}/cars/#{@car.id}"
         end
-        @maintenance = Maintenance.find_by(id: params[:captures][2])
         @maintenance.update(params[:maintenance])
         redirect "/users/#{@user.slug}/cars/#{@car.id}"
       else
@@ -94,9 +95,9 @@ class MaintenancesController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:captures][1])
-        @maintenance = Maintenance.find_by(id: params[:captures][2])
+      @car = Car.find_by(id: params[:captures][1])
+      @maintenance = Maintenance.find_by(id: params[:captures][2])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
         @maintenance.delete
         redirect "/users/#{@user.slug}/cars/#{@car.id}"
       else

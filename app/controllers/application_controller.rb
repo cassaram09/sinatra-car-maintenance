@@ -111,13 +111,5 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/*' do
-    viewname = params[:splat].first   # eg "some/path/here"
-    if File.exist?("views/#{viewname}.erb")
-    erb :"#{viewname}"
-    else
-      redirect '/'
-    end
-  end
 
 end

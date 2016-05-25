@@ -40,8 +40,8 @@ class CarsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:id])
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         erb :'/users/cars/show'
       else
         redirect "/users/#{@current.slug}"
@@ -56,8 +56,8 @@ class CarsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:id])
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         erb :'/users/cars/edit'
       else
         redirect "/users/#{@current.slug}"
@@ -72,8 +72,8 @@ class CarsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:id])
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         @car.update(params[:car])
         redirect "/users/#{@user.slug}/cars/#{@car.id}"
       else
@@ -89,8 +89,8 @@ class CarsController < ApplicationController
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
-      if @current.id == @user.id
-        @car = Car.find_by(id: params[:id])
+      @car = Car.find_by(id: params[:id])
+      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         Car.destroy(@car.id)
         redirect "/users/#{@user.slug}"
       else
