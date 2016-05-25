@@ -1,14 +1,46 @@
-<h1>User Dashboard</h1>
+<div class="content">
+  <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
+  <a href="/logout" class="btn btn-xs btn-danger">Logout</a>
+  <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
 
-<% if flash.has?(:message) %>
-  <p><%= flash[:message] %></p>
-<% end %>
+</div>
 
-<a href="<%= @user.slug %>/cars/new">Add a car</a>
-</br>
-</br>
-<h2> Your Cars </h2>
 
-<% @user.cars.each do |car| %>
-  <p><%= car.make %> <%= car.car_model %> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>">View Car and Maintenance Logs</a>   <a href="/users/<%=@user.slug%>/cars/<%=car.id%>/edit">Edit Car</a><p>
-  <% end %>
+<div class="content">
+  <h1>Your Dashboard</h1>
+  <div class="flash-message">
+    <% if flash.has?(:message) %>
+      <p><%= flash[:message] %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="content">
+  <h2> Your Cars </h2>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th># ID</th>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.cars.each do |car| %>
+            <tr>
+              <td> <%= car.id %> </td>
+              <td> <%= car.year %> </td>
+              <td> <%= car.make %> </td>
+              <td> <%= car.car_model %> </td>
+              <td> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>" class="btn btn-xs btn-primary">View Car and Maintenance Logs</a> </td>
+              <td> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>/edit" class="btn btn-xs btn-primary">Edit Car</a> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
