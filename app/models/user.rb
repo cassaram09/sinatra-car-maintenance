@@ -4,6 +4,14 @@ class User < ActiveRecord::Base
 
   has_many :cars
 
+  def destroy_cars
+    self.cars.each do |car|
+      Car.destroy(car.id) 
+    end
+  end
+
+  after_destroy :destroy_cars
+
   def slug
     slug = self.name.strip.downcase.gsub(/[\&\$\+\,\/\:\;\=\?\@\#\s\<\>\[\]\{\}\|\~\^|\%\(\)\*]/, "-").gsub(/\-{2,}/, "-")
   end

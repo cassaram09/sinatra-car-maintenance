@@ -1,7 +1,7 @@
 class Maintenance < ActiveRecord::Base
 
-  belongs_to :car
-  belongs_to :user
+  belongs_to :car, dependent: :destroy
+  belongs_to :user, dependent: :destroy
 
   @@base_maintenance = ["Air Filter", "Oil/Oil Filter", "Windshield Wipers / Fluid", "Battery", "Headlights", "Brake Pads", "Fuel Filter", "Spark Plugs", "Radiator Flush", "Fuses"]
 

@@ -17,9 +17,9 @@
       miles: 24000,
       user_id: @matt.id,
       )
-    @oil_change = Maintenance.create(name: "Oil Change")
-    @brake_change = Maintenance.create(name: "Replace Brakes")
-    @tire_rotation = Maintenance.create(name: "Rotate Tires")
-    @wiper_fluid = Maintenance.create(name: "Refill Wiper Fluid")
+    @oil_change = Maintenance.create(name: "Oil Change", car_id: @car1.id, user_id: @matt.id)
+    @brake_change = Maintenance.create(name: "Replace Brakes", car_id: @car1.id, user_id: @matt.id)
+    @tire_rotation = Maintenance.create(name: "Rotate Tires", car_id: @car2.id, user_id: @matt.id)
+    @wiper_fluid = Maintenance.create(name: "Refill Wiper Fluid", car_id: @car2.id, user_id: @matt.id)
     @clean = Maintenance.create(name: "Clean")
     @tire_air = Maintenance.create(name: "Add Tire Air")

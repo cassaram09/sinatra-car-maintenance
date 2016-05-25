@@ -5,7 +5,6 @@ class MaintenancesController < ApplicationController
 
   #GET PAGE FOR NEW MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/new' do
-    binding.pry
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     if @current.id == @user.id
@@ -18,13 +17,11 @@ class MaintenancesController < ApplicationController
 
   #CREATE NEW MAINTENANCE TASK
   post '/users/:slug/cars/:id/maintenance' do
-    binding.pry
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     @car = Car.find_by(params[:id])
     if @current.id == @user.id
       params[:maintenance].each do |maintenance|
-        binding.pry
         if maintenance[:name] == "" || maintenance[:date] == ""
           next
         end
