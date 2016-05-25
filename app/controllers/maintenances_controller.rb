@@ -23,6 +23,10 @@ class MaintenancesController < ApplicationController
     @car = Car.find_by(params[:id])
     if @current.id == @user.id
       params[:maintenance].each do |maintenance|
+        binding.pry
+        if maintenance[:name] == "" || maintenance[:date] == ""
+          next
+        end
         @maintenance = Maintenance.create(maintenance)
         @maintenance.update(car_id: @car.id, user_id: @user.id)
       end

@@ -5,19 +5,20 @@
 
   <label>Task</label>
     <select name="maintenance[][name]">
+      <option label=" "></option>
       <% Maintenance.select_user_maintenance(@user).each do |task| %>
         <option> <%= task.name %> </option>
       <% end %>
     </select>
   <label>Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]" required>
+    <input type="text" class="datepicker" name="maintenance[][date]">
   
   <h2>Or create a new task</h2>
 
   <label>Task:</label>
     <input type="text" name="maintenance[][name]">
   <label>Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]" required>
+    <input type="text" class="datepicker" name="maintenance[][date]">
 
   <p><input type="submit" value="Add Maintenance"></p>
 </form>
