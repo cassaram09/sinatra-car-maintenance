@@ -22,9 +22,9 @@ class ApplicationController < Sinatra::Base
 
   #GET LOGIN PAGE
   get '/login' do
-    @user = Helpers.current_user(session)
     if Helpers.is_logged_in?(session) 
-      redirect "/users/#{@user.slug}"
+      @user = Helpers.current_user(session)
+      redirect "/users/#{@current.slug}"
     else 
       erb :login
     end
@@ -99,12 +99,15 @@ class ApplicationController < Sinatra::Base
 
   #GET USER DASHBOARD IF LOGGED IN 
   get '/users/:slug' do
-    @user = Helpers.current_user(session)
-    if Helpers.is_logged_in?(session) && @user.slug == params[:slug]
-        @user = Helpers.current_user(session)
+    if Helpers.is_logged_in?(session)
+      @user = Helpers.current_user(session)
+      if @user.slug == params[:slug]
         erb :'/users/show'
       else
-      redirect "/"
+        redirect "/users/#{@user.slug}"
+      end
+    else
+      redirect "/login"
     end
   end
 
