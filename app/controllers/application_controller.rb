@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "carmaintenance4days"
   end
 
-  #Get the home page
+  #GET THE HOME PAGE
   get '/' do
     if Helpers.is_logged_in?(session) 
       @user = Helpers.current_user(session)
@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  #Get the login page
+  #GET LOGIN PAGE
   get '/login' do
     @user = Helpers.current_user(session)
     if Helpers.is_logged_in?(session) 
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  #Send login credentials to database
+  #SEND LOGIN CREDENTIALS TO DATABASE
   post '/login' do
     if !params.has_value?("") #if any field is blank, throw an error and reload the page
       @user = User.find_by(email: params[:email])
@@ -48,7 +48,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  #Get the sign up page
+  #GET SIGN UP PAGE
   get '/register' do
     if Helpers.is_logged_in?(session) 
       @user = Helpers.current_user(session)
@@ -58,7 +58,7 @@ class ApplicationController < Sinatra::Base
     end 
   end
 
-  #Send signup credentials to database
+  #CREATE NEW USER
   post '/register' do
     if !params.has_value?("")  #if any field is blank, throw an error and reload the page
       if User.find_by(email: params[:email])
@@ -81,13 +81,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  #Log the user out of the application
+  #LOG USER OUT
   get '/logout' do
     session.clear
     redirect '/'
   end
 
-  #redirect the user if they try to access this page
+  #REDIRECT USERS IF THEY TRY TO ACCESS THIS PAGE
   get '/users' do
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session) 
@@ -97,7 +97,7 @@ class ApplicationController < Sinatra::Base
     end 
   end
 
-  #Render the user's dashboard if they're loggedin, otherwise redirect 
+  #GET USER DASHBOARD IF LOGGED IN 
   get '/users/:slug' do
     @user = Helpers.current_user(session)
     if Helpers.is_logged_in?(session) && @user.slug == params[:slug]

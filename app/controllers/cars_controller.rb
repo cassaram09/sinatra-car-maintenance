@@ -3,6 +3,7 @@ class CarsController < ApplicationController
     set :views, "app/views"
   end
 
+  #GET PAGE FOR NEW CARS
   get '/users/:slug/cars/new' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
@@ -13,17 +14,7 @@ class CarsController < ApplicationController
     end
   end
 
-  get '/users/:slug/cars/:id' do
-    @user = User.find_by_slug(params[:slug])
-    @current = Helpers.current_user(session)
-    if @current.id = @user.id
-      @car = Car.find_by(id: params[:id])
-      erb :'/users/cars/show'
-    else
-      redirect "/users/#{@current.slug}"
-    end
-  end
-
+  #CREATE NEW CAR
   post '/users/:slug/cars' do
     binding.pry
     @user = Helpers.current_user(session)
@@ -32,17 +23,19 @@ class CarsController < ApplicationController
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
+  #GET INDIVIDUAL CAR PAGE
   get '/users/:slug/cars/:id' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
-    if @current.id = @user.id
-      @game = Game.find_by(id: params[:id])
+    if @current.id == @user.id
+      @car = Car.find_by(id: params[:id])
       erb :'/users/cars/show'
     else
       redirect "/users/#{@current.slug}"
     end
   end
 
+  #GET INDIVIDUAL CAR EDIT PAGE
   get '/users/:slug/cars/:id/edit' do
     binding.pry
     @user = User.find_by_slug(params[:slug])
@@ -51,6 +44,7 @@ class CarsController < ApplicationController
     erb :'/users/cars/edit'
   end
 
+  #EDIT INDIVIDUAL CAR
   patch '/users/:slug/cars/:id' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
