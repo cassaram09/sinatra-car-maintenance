@@ -1,8 +1,0 @@
-<% Task.all.each do |task| %>
-
-  <form method="post" action="/users/<%= @user.slug %>/maintenance/delete">
-    <p>
-    <input type="hidden" name="_method" value="delete">
-    <%= task.name %>  <input type="submit" value="Delete"></p>
-  </form>
-<% end %>

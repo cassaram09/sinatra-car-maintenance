@@ -5,8 +5,8 @@
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/">
   <label>Task</label>
     <select name="maintenance[name]">
-      <% Helpers.tasks.each do |task| %>
-        <option> <%= task %> </option>
+      <% Task.all.each do |task| %>
+        <option> <%= task.name %> </option>
       <% end %>
     </select>
   <label>Performed on Date:</label>
