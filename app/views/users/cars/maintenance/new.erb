@@ -6,27 +6,30 @@
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance">
   <h2>Log from existing</h2>
 
-  <label>Task</label>
-    <select name="maintenance[][name]">
+  <label for="name">Type</label>
+    <select name="maintenance[][name]" id="name">
       <option label=" "></option>
       <% Maintenance.select_user_maintenance(@user).each do |task| %>
         <option> <%= task %> </option>
       <% end %>
     </select>
-  <label>Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]">
-  <label>Performed at Miles:</label>
-    <input type="text" name="maintenance[][miles]">
+  <label for="description">Description:</label>
+    <input type="text" name="maintenance[][description]" id="description">
+  <label for="date">Performed on Date:</label>
+    <input type="text" class="datepicker" name="maintenance[][date]" id="date">
+  <label for="miles">Performed at Miles:</label>
+    <input type="text" name="maintenance[][miles]" id="miles">
   
   <h2>And/Or create a new log</h2>
 
-  <label>Task:</label>
-    <input type="text" name="maintenance[][name]">
-  <label>Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]">
-  <label>Performed at Miles:</label>
-    <input type="text" name="maintenance[][miles]">
-
+  <label for="name">Task:</label>
+    <input type="text" name="maintenance[][name]" id="name">
+  <label for="description">Description:</label>
+    <input type="text" name="maintenance[][description]" id="description">
+  <label for="date">Performed on Date:</label>
+    <input type="text" class="datepicker" name="maintenance[][date]" id="date">
+  <label for="miles">Performed at Miles:</label>
+    <input type="text" name="maintenance[][miles]" id="miles">
   <p><input type="submit" value="Log Maintenance"></p>
 </form>
 

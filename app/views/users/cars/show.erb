@@ -17,6 +17,8 @@
 
   <p>ID #<%= maintenance.id %> - <%= maintenance.name %> peformed on <%= maintenance.date %> at <%= maintenance.miles %> miles 
 
-  <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit Log</a> </p>
+  <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit Log</a> <br/>
+  Notes: <%= maintenance.description %>
+  </p>
 
 <%end%>

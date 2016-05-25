@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160524203431) do
     t.string  "name"
     t.string  "date"
     t.string  "miles"
+    t.string  "description"
     t.integer "car_id"
     t.integer "user_id"
   end

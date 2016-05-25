@@ -4,24 +4,30 @@
 
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/<%= @maintenance.id %>">
   <input type="hidden" name="_method" value="patch">
-  <label>Task</label>
-    <select name="maintenance[name]">
+  <label for="name">Type</label>
+    <select name="maintenance[name]" id="name">
+      <option label=" "></option>
       <% Maintenance.select_user_maintenance(@user).each do |task| %>
         <option <%='selected' if task == @maintenance.name%>> <%= task %> </option>
       <% end %>
     </select>
-  <label>Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[date]" value="<%= @maintenance.date %>" >
-  
-  <label>Performed at Miles:</label>
-    <input type="text" name="maintenance[][miles]" value="<%= @maintenance.miles %>">
+  <label for="description">Description:</label>
+    <input type="text" name="maintenance[description]" id="description" value="<%= @maintenance.description %>">
+  <label for="date">Performed on Date:</label>
+    <input type="text" class="datepicker" name="maintenance[date]" id="date" value="<%= @maintenance.date %>">
+  <label for="miles">Performed at Miles:</label>
+    <input type="text" name="maintenance[miles]" id="miles" value="<%= @maintenance.miles %>">
 
   <input type="submit" value="Edit Maintenance Log">
 </form>
 
 <p>
+
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= @maintenance.id %>/delete">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Maintenance Log">
 </form>
 </p>
+
+
+ 
