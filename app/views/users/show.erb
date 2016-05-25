@@ -10,5 +10,5 @@
 <h2> Your Cars </h2>
 
 <% @user.cars.each do |car| %>
-  <a href="/users/<%=@user.slug%>/cars/<%=car.id%>"><%= car.make %> <%= car.car_model %></a>
+  <p><%= car.make %> <%= car.car_model %> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>">View Car and Maintenance Logs</a>   <a href="/users/<%=@user.slug%>/cars/<%=car.id%>/edit">Edit Car</a><p>
   <% end %>

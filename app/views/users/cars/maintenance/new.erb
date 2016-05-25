@@ -1,10 +1,10 @@
 <a href="/users/<%= @user.slug %>">Home</a>
 
 
-<h1>Add Maintenance Task</h1>
+<h1>Log Maintenance</h1>
 
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance">
-  <h2>Add from existing tasks</h2>
+  <h2>Log from existing</h2>
 
   <label>Task</label>
     <select name="maintenance[][name]">
@@ -18,7 +18,7 @@
   <label>Performed at Miles:</label>
     <input type="text" name="maintenance[][miles]">
   
-  <h2>Or create a new task</h2>
+  <h2>And/Or create a new log</h2>
 
   <label>Task:</label>
     <input type="text" name="maintenance[][name]">
@@ -27,6 +27,6 @@
   <label>Performed at Miles:</label>
     <input type="text" name="maintenance[][miles]">
 
-  <p><input type="submit" value="Add Maintenance"></p>
+  <p><input type="submit" value="Log Maintenance"></p>
 </form>
 

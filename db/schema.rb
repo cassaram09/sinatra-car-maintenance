@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 20160524203431) do
     t.string  "color"
     t.string  "transmission"
     t.integer "year"
-    t.integer "miles"
+    t.string  "miles"
     t.integer "user_id"
   end
 
   create_table "maintenances", force: :cascade do |t|
     t.string  "name"
     t.string  "date"
-    t.integer "miles"
+    t.string  "miles"
     t.integer "car_id"
     t.integer "user_id"
   end

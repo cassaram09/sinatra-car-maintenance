@@ -12,12 +12,16 @@
     </select>
   <label>Performed on Date:</label>
     <input type="text" class="datepicker" name="maintenance[date]" value="<%= @maintenance.date %>" >
-  <input type="submit" value="Edit Maintenance">
+  
+  <label>Performed at Miles:</label>
+    <input type="text" name="maintenance[][miles]" value="<%= @maintenance.miles %>">
+
+  <input type="submit" value="Edit Maintenance Log">
 </form>
 
 <p>
 <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= @maintenance.id %>/delete">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Maintenance Task">
+  <input type="submit" value="Delete Maintenance Log">
 </form>
 </p>
