@@ -12,4 +12,3 @@
 <% @user.cars.each do |car| %>
   <a href="/users/<%=@user.slug%>/cars/<%=car.id%>"><%= car.make %> <%= car.car_model %></a>
   <% end %>
-

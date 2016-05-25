@@ -9,8 +9,8 @@
       user_id: @matt.id
       )
     @car2 = Car.create(
-      make: "Ford",
-      car_model: "Probe",
+      make: "Maserati",
+      car_model: "LX",
       color: "Red",
       transmission: "Automatic",
       year: 1994,

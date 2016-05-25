@@ -28,7 +28,7 @@ class CarsController < ApplicationController
         @car.update(user_id: @user.id)
         redirect "/users/#{@user.slug}/cars/#{@car.id}"
       else
-        redirect "/users/#{@current.slug}"
+        redirect "/users/#{@user.slug}"
       end
     else
       redirect "/login"
