@@ -3,6 +3,7 @@ class CreateMaintenances < ActiveRecord::Migration
     create_table :maintenances do |t|
       t.string :name
       t.string :date
+      t.integer :miles
       t.belongs_to :car
       t.belongs_to :user
     end

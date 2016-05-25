@@ -27,7 +27,7 @@ class MaintenancesController < ApplicationController
       @car = Car.find_by(id: params[:id])
       if @current.id == @user.id && @user.car_ids.include?(@car.id) 
         params[:maintenance].each do |maintenance|
-          if maintenance[:name] == "" || maintenance[:date] == ""
+          if maintenance[:name] == "" || maintenance[:date] == "" || maintenance[:miles] == ""
             next
           end
           @maintenance = Maintenance.create(maintenance)

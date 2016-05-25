@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160524203431) do
   create_table "maintenances", force: :cascade do |t|
     t.string  "name"
     t.string  "date"
+    t.integer "miles"
     t.integer "car_id"
     t.integer "user_id"
   end
