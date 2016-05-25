@@ -23,3 +23,11 @@
     @wiper_fluid = Maintenance.create(name: "Refill Wiper Fluid")
     @clean = Maintenance.create(name: "Clean")
     @tire_air = Maintenance.create(name: "Add Tire Air")
+
+    Task.create(name: "Oil Change")
+    Task.create(name: "Replace Brakes")
+    Task.create(name: "Tire Rotation")
+    Task.create(name: "Oil Change")
+    Task.create(name: "Oil Change")
+    Task.create(name: "Oil Change")
+

@@ -1,0 +1,21 @@
+<h1>Edit Tasks</h1>
+
+<form method="post" action="/users/<%= @user.slug %>/maintenance/edit">
+<input type="hidden" name="_method" value="patch">
+  <% Task.all.each do |task| %>
+    <p><input type="text" name="task[][name]" value="<%= task.name %>" readonly required class="readonly"><input name="Edit" type="button" value="Edit">
+    <input type="hidden" name="task[][id]" value="<%= task.id %>" readonly required ></p>
+  <% end %>
+  <input type="submit" value="Save">
+
+</form>
+
+<h1>Add Task</h1>
+<form method="post" action='/users/<%= @user.slug %>/maintenance/new'>
+  <input type="text" name="task">
+  <input type="submit" value="Add">
+</form>
+
+<h1>Delete Tasks</h1>
+
+<a href="/users/<%= @user.slug %>/maintenance/delete">Delete tasks</a>
