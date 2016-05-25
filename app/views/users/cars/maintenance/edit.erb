@@ -4,8 +4,8 @@
   <input type="hidden" name="_method" value="patch">
   <label>Task</label>
     <select name="maintenance[name]">
-      <% Task.all.each do |task| %>
-        <option> <%= task.name %> </option>
+      <% Maintenance.select_user_maintenance(@user).each do |task| %>
+        <option <%='selected' if task == @maintenance.name%>> <%= task %> </option>
       <% end %>
     </select>
   <label>Performed on Date:</label>

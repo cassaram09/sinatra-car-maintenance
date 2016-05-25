@@ -14,6 +14,6 @@
 
 <% @car.maintenances.reverse.each do |maintenance| %>
 
-  <p><%= maintenance.name %> peformed on <%= maintenance.date %> <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit task</a> </p>
+  <p>#<%= maintenance.id %> - <%= maintenance.name %> peformed on <%= maintenance.date %> <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit task</a> </p>
 
 <%end%>

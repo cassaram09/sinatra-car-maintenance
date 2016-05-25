@@ -7,7 +7,7 @@
     <select name="maintenance[][name]">
       <option label=" "></option>
       <% Maintenance.select_user_maintenance(@user).each do |task| %>
-        <option> <%= task.name %> </option>
+        <option> <%= task %> </option>
       <% end %>
     </select>
   <label>Performed on Date:</label>

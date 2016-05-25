@@ -5,6 +5,7 @@ class MaintenancesController < ApplicationController
 
   #GET PAGE FOR NEW MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/new' do
+    binding.pry
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     if @current.id == @user.id
@@ -36,7 +37,7 @@ class MaintenancesController < ApplicationController
     end
   end
 
-  #GET PAGE FOR INDIVIDUAL MAINTENANCE TASK
+  #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/:id' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
@@ -49,7 +50,7 @@ class MaintenancesController < ApplicationController
     end
   end
 
-  #EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
+  #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/:id/edit' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
