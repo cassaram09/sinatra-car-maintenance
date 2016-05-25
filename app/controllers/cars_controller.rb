@@ -25,6 +25,7 @@ class CarsController < ApplicationController
   end
 
   post '/users/:slug/cars' do
+    binding.pry
     @user = Helpers.current_user(session)
     @car = Car.create(params[:car])
     @car.update(user_id: @user.id)
@@ -43,6 +44,7 @@ class CarsController < ApplicationController
   end
 
   get '/users/:slug/cars/:id/edit' do
+    binding.pry
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)
     @car = Car.find_by(id: params[:id])

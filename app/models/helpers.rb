@@ -8,4 +8,7 @@ class Helpers < ActiveRecord::Base
     User.find_by_id(session[:id])
   end
 
+  def self.tasks
+    tasks = ["Oil Change", "Brake Replacement", "Tire Rotation"]
+  end
 end

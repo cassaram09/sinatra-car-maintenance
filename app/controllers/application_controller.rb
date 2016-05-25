@@ -102,7 +102,7 @@ class ApplicationController < Sinatra::Base
     @user = Helpers.current_user(session)
     if Helpers.is_logged_in?(session) && @user.slug == params[:slug]
         @user = Helpers.current_user(session)
-        erb :'/users/show_dashboard'
+        erb :'/users/show'
       else
       redirect "/"
     end
