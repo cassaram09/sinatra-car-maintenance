@@ -53,6 +53,7 @@ class CarsController < ApplicationController
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
+  #DELETE INDIVIDUAL CAR
   delete '/users/:slug/cars/:id/delete' do
     @user = User.find_by_slug(params[:slug])
     @current = Helpers.current_user(session)

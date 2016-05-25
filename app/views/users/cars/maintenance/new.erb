@@ -1,23 +1,24 @@
 <h1>Add Maintenance Task</h1>
 
+<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance">
+  <h2>Add from existing tasks</h2>
 
-
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/">
   <label>Task</label>
-    <select name="maintenance[name]">
+    <select name="maintenance[][name]">
       <% Maintenance.all.each do |task| %>
         <option> <%= task.name %> </option>
       <% end %>
     </select>
   <label>Performed on Date:</label>
-    <input type="text" id="datepicker" name="maintenance[date]" required>
-  <input type="submit" value="Add Maintenance">
-</form>
+    <input type="text" class="datepicker" name="maintenance[][date]" required>
+  
+  <h2>Or create a new task</h2>
 
-<p>
-<form method="POST" action="/users/<%= @user.slug %>/maintenance/new">
-  <input type="text" name="task">
-  <input type="submit" value="Create Task">
+  <label>Task:</label>
+    <input type="text" name="maintenance[][name]">
+  <label>Performed on Date:</label>
+    <input type="text" class="datepicker" name="maintenance[][date]" required>
+
+  <p><input type="submit" value="Add Maintenance"></p>
 </form>
-</p>
 

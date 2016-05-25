@@ -16,12 +16,14 @@ class MaintenancesController < ApplicationController
   end
 
   #CREATE NEW MAINTENANCE TASK
-  post '/users/:slug/cars/:id/maintenance/' do
+  post '/users/:slug/cars/:id/maintenance' do
     binding.pry
     @user = Helpers.current_user(session)
     @car = Car.find_by(params[:id])
-    @maintenance = Maintenance.create(params[:maintenance])
-    @maintenance.update(car_id: @car.id)
+    params[:maintenance].each do |maintenance|
+      @maintenance = Maintenance.create(maintenance)
+      @maintenance.update(car_id: @car.id)
+    end
     redirect "/users/#{@user.slug}/cars/#{@car.id}"
   end
 
