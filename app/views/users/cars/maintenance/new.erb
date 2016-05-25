@@ -5,7 +5,7 @@
 
   <label>Task</label>
     <select name="maintenance[][name]">
-      <% Maintenance.all.each do |task| %>
+      <% Maintenance.select_user_maintenance(@user).each do |task| %>
         <option> <%= task.name %> </option>
       <% end %>
     </select>
