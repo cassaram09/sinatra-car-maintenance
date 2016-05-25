@@ -12,7 +12,10 @@ class Maintenance < ActiveRecord::Base
         user_maintenance << maintenance.name
       end
     end
-    maintenance = @@base_maintenance + user_maintenance.uniq
+    maintenance = @@base_maintenance + user_maintenance
+    maintenance.uniq
   end
+  
+
 end
 

@@ -44,7 +44,6 @@ class MaintenancesController < ApplicationController
 
   #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/:id' do
-    binding.pry
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)
