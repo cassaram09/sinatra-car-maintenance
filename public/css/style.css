@@ -68,3 +68,27 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+form select {
+  width: 146px;
+}
+
+form input:not(:last-child)  {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 150px;
+  text-indent: 8px;
+  height:32px;
+  border: 1px solid #ddd;
+  border-radius: none;
+
+}
+select {
+  width: 160px;
+  text-indent: 0px;
+  height:32px;
+  border: 1px solid #ddd;
+  border-radius: none;
+  background-color: #fff;
+}

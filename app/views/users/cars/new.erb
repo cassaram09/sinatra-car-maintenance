@@ -2,32 +2,67 @@
   <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
   <a href="/logout" class="btn btn-xs btn-danger">Logout</a>
   <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
-</div>
+</div>  
 
 <div class="content">
+
   <h1>Add Car</h1>
+
   <form method="POST" action="/users/<%= @user.slug %>/cars">
-    <label>Make</label>
-      <input type="text" name="car[make]">
-    <label>Model</label>
-      <input type="text" name="car[car_model]">
-    <label>Color</label>
-      <input type="text" name="car[color]">
-    <label>Transmission</label>
-      <select name="car[transmission]">
-        <option>Manual</option>
-        <option>Automatic</option>
-      </select>
-    <label>Year</label>
-      <select name="car[year]">
-       <% i = 1900 %>
-       <% while i <= 2016 %>
-         <option <%='selected' if i == 2016%>> <%=i%> </option>
-        <% i += 1 %>
-        <% end %>
-      </select>
-    <label>Miles</label>
-      <input type="text" name="car[miles]">
-    <input type="submit" value="Add Car" class="btn btn-xs btn-primary">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Attribute</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td> <label>Make</label> </td>
+                <td> <input type="text" name="car[make]"> </td>
+              </tr>
+              <tr>
+                <td> <label>Model</label> </td>
+                <td> <input type="text" name="car[car_model]"> </td>
+              </tr>
+              <tr>
+                <td> <label>Color</label> </td>
+                <td> <input type="text" name="car[color]" </td>
+              </tr>
+              <tr>
+                <td>  <label>Transmission</label> </td>
+                <td> <select class="select-list"  name="car[transmission]">
+                      <option>Manual</option>
+                      <option>Automatic</option>
+                    </select> 
+                  </td>
+              </tr>
+              <tr>
+                <td> <label>Year</label> </td>
+                <td> <select class="select-list" name="car[year]">
+                       <% i = 1900 %>
+                       <% while i <= 2016 %>
+                         <option <%='selected' if i == 2016%>> <%=i%> </option>
+                        <% i += 1 %>
+                        <% end %>
+                      </select> 
+                  </td>
+              </tr>
+              <tr>
+                <td> <label>Miles</label> </td>
+                <td> <input type="text" name="car[miles]"> </td>
+              </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+      
+    <input type="submit" value="Add Car" id="create" class="btn btn-xs btn-primary">
   </form>
+
+  <br/>
 </div>
+

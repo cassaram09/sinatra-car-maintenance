@@ -1,24 +1,48 @@
-<a href="/users/<%= @user.slug %>">Home</a>
+<div class="content">
+  <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
+  <a href="/logout" class="btn btn-xs btn-danger">Logout</a>
+  <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
+</div>
 
-<p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit">Edit This Car</a></p>
-
-<p>Make: <%= @car.make %></p>
-<p>Model: <%= @car.car_model %></p>
-<p>Color: <%= @car.color %></p>
-<p>Transmission: <%= @car.transmission %></p>
-<p>Year: <%= @car.year %></p>
-<p>Miles: <%= @car.miles %></p>
+<div class="content">
 
 
-<a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/new">Log Maintenance</a>
+<p><%= @car.color %> <%= @car.year %> <%= @car.make %> <%= @car.car_model %> with a <%= @car.transmission %> transmission and <%= @car.miles %> miles. </p>
 
+<p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit" class="btn btn-xs btn-primary">Edit This Car</a></p>
 
-<% @car.maintenances.reverse.each do |maintenance| %>
+</div>
 
-  <p>ID #<%= maintenance.id %> - <%= maintenance.name %> peformed on <%= maintenance.date %> at <%= maintenance.miles %> miles 
+<div class="content">
+  <h2> Maintenance Records </h2>
+  <p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/new" class="btn btn-xs btn-primary">Log Maintenance</a></p>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Maintenance</th>
+            <th>Date</th>
+            <th>Miles</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
 
-  <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>">Edit Log</a> <br/>
-  Notes: <%= maintenance.description %>
-  </p>
-
-<%end%>
+          <% @car.maintenances.reverse.each do |maintenance| %>
+            <tr>
+              <td> <%= maintenance.id %> </td>
+              <td> <%= maintenance.name %> </td>
+              <td> <%= maintenance.date %> </td>
+              <td> <%= maintenance.miles %> </td>
+              <td> <%= maintenance.description %> </td>
+              <td> <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>" class="btn btn-xs btn-primary">Edit Log</a> </td>
+            </tr>
+          <%end%>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
