@@ -1,5 +1,5 @@
 body {
-  background: url("http://special.porsche.com/microsite/911-targa/assets/images/share/04.jpg") no-repeat center center fixed;
+  background: url("https://scontent-lga3-1.xx.fbcdn.net/t31.0-8/1146783_10154883704300523_3101244223269172651_o.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -33,44 +33,13 @@ body {
   background-color: #eee;
 }
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
 
 form select {
   width: 146px;
+}
+
+.form-signin label, .form-signin input {
+  margin-right: 10px;
 }
 
 form input:not(:last-child)  {
@@ -91,4 +60,8 @@ select {
   border: 1px solid #ddd;
   border-radius: none;
   background-color: #fff;
+}
+
+#logout{
+  float:right;
 }

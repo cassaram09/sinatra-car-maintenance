@@ -37,7 +37,6 @@ class CarsController < ApplicationController
 
   #GET INDIVIDUAL CAR PAGE
   get '/users/:slug/cars/:id' do
-    binding.pry
     if Helpers.is_logged_in?(session)
       @user = User.find_by_slug(params[:slug])
       @current = Helpers.current_user(session)

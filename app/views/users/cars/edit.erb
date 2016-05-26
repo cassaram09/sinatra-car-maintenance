@@ -1,6 +1,6 @@
 <div class="content">
   <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
-  <a href="/logout" class="btn btn-xs btn-danger">Logout</a>
+  <a href="/logout" class="btn btn-xs btn-danger" id="logout">Logout</a>
   <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
   <a href="/users/<%= @user.slug %>/cars/<%= @car.id %>" class="btn btn-xs btn-primary">Back to <%= @car.make %> <%= @car.car_model %></a>
 </div>

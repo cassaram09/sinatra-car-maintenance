@@ -1,16 +1,16 @@
-<div class="container">
+<div class="content">
 
   <% if flash.has?(:message) %>
     <p><%= flash[:message] %></p>
   <% end %>
 
   <form class="form-signin" method="POST" action="/login">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="email" class="sr-only">Email</label>
-      <input type="email" id="email" class="form-control" placeholder="Email address" name="email" required >
-    <label for="password" class="sr-only">Password</label>
-      <input type="password" id="password" class="form-control" name="password" placeholder="password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+    <h2>Log In</h2>
+    <label for="email" >Email</label>
+      <input type="email" id="email" placeholder="Email address" name="email" required >
+    <label for="password" >Password</label>
+      <input type="password" id="password"  name="password" placeholder="password" required>
+    <input class="btn btn-md btn-primary" type="submit" value="Log In">
   </form>
-
+  <br/>
 </div>

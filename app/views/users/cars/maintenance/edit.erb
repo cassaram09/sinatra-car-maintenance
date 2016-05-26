@@ -1,33 +1,65 @@
-<a href="/users/<%= @user.slug %>">Home</a>
+<div class="content">
+  <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
+  <a href="/logout" class="btn btn-xs btn-danger" id="logout">Logout</a>
+  <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
+  <a href="/users/<%= @user.slug %>/cars/<%= @car.id %>" class="btn btn-xs btn-primary">Back to <%= @car.make %> <%= @car.car_model %></a>
+</div>
 
-<h1>Edit Maintenance Task</h1>
+<div class="content">
 
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/<%= @maintenance.id %>">
-  <input type="hidden" name="_method" value="patch">
-  <label for="name">Type</label>
-    <select name="maintenance[name]" id="name">
-      <option label=" "></option>
-      <% Maintenance.select_user_maintenance(@user).each do |task| %>
-        <option <%='selected' if task == @maintenance.name%>> <%= task %> </option>
-      <% end %>
-    </select>
-  <label for="description">Description:</label>
-    <input type="text" name="maintenance[description]" id="description" value="<%= @maintenance.description %>">
-  <label for="date">Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[date]" id="date" value="<%= @maintenance.date %>">
-  <label for="miles">Performed at Miles:</label>
-    <input type="text" name="maintenance[miles]" id="miles" value="<%= @maintenance.miles %>">
+  <h1>Edit Maintenance Task</h1>
 
-  <input type="submit" value="Edit Maintenance Log">
-</form>
+  <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance/<%= @maintenance.id %>">
+    <input type="hidden" name="_method" value="patch">
 
-<p>
+    <br/>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <label for="name">Type</label> </td>
+                <td> <select name="maintenance[name]" id="name">
+                      <option label=" "></option>
+                      <% Maintenance.select_user_maintenance(@user).each do |task| %>
+                        <option <%='selected' if task == @maintenance.name%>> <%= task %> </option>
+                      <% end %>
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                <td> <label for="description">Description:</label> </td>
+                <td> <input type="text" name="maintenance[description]" id="description" value="<%= @maintenance.description %>"> </td>
+              </tr>
+              <tr>
+                <td> <label for="date">Performed on Date:</label> </td>
+                <td> <input type="text" class="datepicker" name="maintenance[date]" id="date" value="<%= @maintenance.date %>"> </td>
+              </tr>
+              <tr>
+                <td> <label for="miles">Performed at Miles:</label> </td>
+                <td> <input type="text" name="maintenance[miles]" id="miles" value="<%= @maintenance.miles %>"> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= @maintenance.id %>/delete">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Maintenance Log">
-</form>
-</p>
+    <input type="submit" value="Edit Maintenance Log" class="btn btn-xs btn-primary">
 
+  </form>
+  <br/>
+</div>
 
+<div class="content">
+
+  <h1>Delete <%= @car.make%> <%= @car.car_model %>  </h1>
+
+  <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= @maintenance.id %>/delete">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Maintenance Log" class="btn btn-xs btn-danger">
+  </form>
+  <br/>
+</div>
  

@@ -1,6 +1,6 @@
 <div class="content">
   <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
-  <a href="/logout" class="btn btn-xs btn-danger">Logout</a>
+  <a href="/logout" class="btn btn-xs btn-danger" id="logout">Logout</a>
   <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
 </div>
 
@@ -8,7 +8,7 @@
 
 
 <p><%= @car.color %> <%= @car.year %> <%= @car.make %> <%= @car.car_model %> with a <%= @car.transmission %> transmission and <%= @car.miles %> miles. </p>
-
+ 
 <p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit" class="btn btn-xs btn-primary">Edit This Car</a></p>
 
 </div>

@@ -1,35 +1,78 @@
-<a href="/users/<%= @user.slug %>">Home</a>
+<div class="content">
+  <a href="/users/<%= @user.slug %>" class="btn btn-xs btn-default">Dashboard</a>
+  <a href="/logout" class="btn btn-xs btn-danger" id="logout">Logout</a>
+  <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
+  <a href="/users/<%= @user.slug %>/cars/<%= @car.id %>" class="btn btn-xs btn-primary">Back to <%= @car.make %> <%= @car.car_model %></a>
+</div>
 
+<div class="content">
+  <h1>Log Maintenance</h1>
 
-<h1>Log Maintenance</h1>
+  <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance">
+    <br/>
+    <h4>Log from existing</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <label for="name">Type</label> </td>
+              <td> <select name="maintenance[][name]" id="name">
+                    <option label=" "></option>
+                    <% Maintenance.select_user_maintenance(@user).each do |task| %>
+                      <option> <%= task %> </option>
+                    <% end %>
+                  </select> 
+                </td>
+            </tr>
+            <tr>
+              <td> <label for="description">Description:</label> </td>
+              <td> <input type="text" name="maintenance[][description]" id="description"> </td>
+            </tr>
+            <tr>
+              <td> <label for="date">Performed on Date:</label> </td>
+              <td> <input type="text" class="datepicker" name="maintenance[][date]" id="date"> </td>
+            </tr>
+            <tr>
+              <td> <label for="miles">Performed at Miles:</label> </td>
+              <td> <input type="text" name="maintenance[][miles]" id="miles"> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id %>/maintenance">
-  <h2>Log from existing</h2>
+    <h4>And / or create a new log</h4>
 
-  <label for="name">Type</label>
-    <select name="maintenance[][name]" id="name">
-      <option label=" "></option>
-      <% Maintenance.select_user_maintenance(@user).each do |task| %>
-        <option> <%= task %> </option>
-      <% end %>
-    </select>
-  <label for="description">Description:</label>
-    <input type="text" name="maintenance[][description]" id="description">
-  <label for="date">Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]" id="date">
-  <label for="miles">Performed at Miles:</label>
-    <input type="text" name="maintenance[][miles]" id="miles">
-  
-  <h2>And/Or create a new log</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <label for="name">Type</label> </td>
+              <td> <input type="text" name="maintenance[][name]" id="name"></td>
+            </tr>
+            <tr>
+              <td> <label for="description">Description:</label> </td>
+              <td> <input type="text" name="maintenance[][description]" id="description"> </td>
+            </tr>
+            <tr>
+              <td> <label for="date">Performed on Date:</label> </td>
+              <td> <input type="text" class="datepicker" name="maintenance[][date]" id="date"> </td>
+            </tr>
+            <tr>
+              <td> <label for="miles">Performed at Miles:</label> </td>
+              <td> <input type="text" name="maintenance[][miles]" id="miles"> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <input type="submit" value="Log Maintenance" class="btn btn-xs btn-primary">
+  </form>
 
-  <label for="name">Task:</label>
-    <input type="text" name="maintenance[][name]" id="name">
-  <label for="description">Description:</label>
-    <input type="text" name="maintenance[][description]" id="description">
-  <label for="date">Performed on Date:</label>
-    <input type="text" class="datepicker" name="maintenance[][date]" id="date">
-  <label for="miles">Performed at Miles:</label>
-    <input type="text" name="maintenance[][miles]" id="miles">
-  <p><input type="submit" value="Log Maintenance"></p>
-</form>
-
+</div>
