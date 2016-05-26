@@ -1,11 +1,12 @@
 <div class="content">
 
+  <h2>Log In</h2>
+
   <% if flash.has?(:message) %>
     <p><%= flash[:message] %></p>
   <% end %>
 
   <form class="form-signin" method="POST" action="/login">
-    <h2>Log In</h2>
     <label for="email" >Email</label>
       <input type="email" id="email" placeholder="Email address" name="email" required >
     <label for="password" >Password</label>

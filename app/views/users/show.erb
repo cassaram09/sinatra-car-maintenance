@@ -9,14 +9,22 @@
   <h1>Your Dashboard</h1>
   <div class="flash-message">
     <% if flash.has?(:message) %>
-      <p><%= flash[:message] %></p>
+      <%= flash[:message] %>
     <% end %>
   </div>
+  <br/>
+  <h4>Notifications</h4>
+  
+  <p>No new notifications.</p>
+
 </div>
 
 <div class="content">
-  <h2> Your Cars </h2>
+  <h2> Your Cars </h2> 
+  <br/>
+  <a href="<%= @user.slug %>/cars/new" class="btn btn-xs btn-primary">Add a car</a>
   <div class="row">
+  <br/>
     <div class="col-md-6">
       <table class="table">
         <thead>
@@ -34,8 +42,14 @@
               <td> <%= car.year %> </td>
               <td> <%= car.make %> </td>
               <td> <%= car.car_model %> </td>
-              <td> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>" class="btn btn-xs btn-primary">View Car and Maintenance Logs</a> </td>
+              <td> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>" class="btn btn-xs btn-primary">View Car</a> </td>
               <td> <a href="/users/<%=@user.slug%>/cars/<%=car.id%>/edit" class="btn btn-xs btn-primary">Edit Car</a> </td>
+              <td>
+                <form method="POST" action="/users/<%= @user.slug %>/cars/<%= car.id%>/delete">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="submit" value="Delete Car" class="btn btn-xs btn-danger">
+                </form>
+              </td>
             </tr>
           <% end %>
         </tbody>

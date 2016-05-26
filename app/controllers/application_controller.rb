@@ -49,35 +49,36 @@ class ApplicationController < Sinatra::Base
   end
 
   #GET SIGN UP PAGE
-  get '/register' do
+  get '/signup' do
     if Helpers.is_logged_in?(session) 
       @user = Helpers.current_user(session)
       redirect "/users/#{@user.slug}"
     else 
-      erb :register
+      erb :signup
     end 
   end
 
   #CREATE NEW USER
-  post '/register' do
+  post '/signup' do
     if !params.has_value?("")  #if any field is blank, throw an error and reload the page
       if User.find_by(email: params[:email])
         flash[:message] = "That email is already associated with another account."
-        redirect '/register'
+        redirect '/signup'
       end
       @user = User.new(params)
       if @user.save
         @user.save
         session[:id] = @user.id
         @session = session
+         flash[:message] = "Welcome, #{@user.name}!"
         redirect "/users/#{@user.slug}"
       else
         flash[:message] = "There was an error. Please try again."
-        redirect '/register'
+        redirect '/signup'
       end
     else
       flash[:message] = "Please fill out all fields."
-      redirect '/register'
+      redirect '/signup'
     end
   end
 

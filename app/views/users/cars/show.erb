@@ -6,11 +6,11 @@
 
 <div class="content">
 
-
-<p><%= @car.color %> <%= @car.year %> <%= @car.make %> <%= @car.car_model %> with a <%= @car.transmission %> transmission and <%= @car.miles %> miles. </p>
- 
-<p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit" class="btn btn-xs btn-primary">Edit This Car</a></p>
-
+  <h2> Car Details </h2>
+  <p><%= @car.color %> <%= @car.year %> <%= @car.make %> <%= @car.car_model %> with a <%= @car.transmission %> transmission and <%= @car.miles %> miles. </p>
+   
+  <p><a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/edit" class="btn btn-xs btn-primary">Edit This Car</a></p>
+  <br/>
 </div>
 
 <div class="content">
@@ -38,6 +38,12 @@
               <td> <%= maintenance.miles %> </td>
               <td> <%= maintenance.description %> </td>
               <td> <a href="/users/<%=@user.slug%>/cars/<%=@car.id%>/maintenance/<%= maintenance.id %>" class="btn btn-xs btn-primary">Edit Log</a> </td>
+              <td>
+                <form method="POST" action="/users/<%= @user.slug %>/cars/<%= @car.id%>/maintenance/<%= maintenance.id %>/delete">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="submit" value="Delete Log" class="btn btn-xs btn-danger">
+                </form>
+              </td>
             </tr>
           <%end%>
         
