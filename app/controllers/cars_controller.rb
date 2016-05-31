@@ -42,9 +42,11 @@ class CarsController < ApplicationController
       @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:id])
       if @current.id == @user.id && @user.car_ids.include?(@car.id)
-        if @car.maintenances.last != nil
-          if @car.maintenances.last.miles > @car.miles
-            @car.miles = @car.maintenances.last.miles
+        if !@car.maintenances.empty?
+          @car.maintenances.each do |record|
+            if record.miles > @car.miles
+              @car.miles = record.miles
+            end
           end
         end
         erb :'/users/cars/show'
