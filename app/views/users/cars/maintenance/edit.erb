@@ -23,7 +23,7 @@
                 <td> <label for="name">Type</label> </td>
                 <td> <select name="maintenance[name]" id="name">
                       <option label=" "></option>
-                      <% Maintenance.select_user_maintenance(@user).each do |task| %>
+                      <% @maintenances.each do |task| %>
                         <option <%='selected' if task == @maintenance.name%>> <%= task %> </option>
                       <% end %>
                     </select>

@@ -103,6 +103,7 @@ class ApplicationController < Sinatra::Base
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
       if @user.slug == params[:slug]
+        @user_cars = @user.cars
         erb :'/users/show'
       else
         redirect "/users/#{@user.slug}"
@@ -112,5 +113,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+
+  private
+    def current_user
+      @current_user = User.find(session[:id])
+    end
 
 end

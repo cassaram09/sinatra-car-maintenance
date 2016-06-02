@@ -5,11 +5,11 @@ class MaintenancesController < ApplicationController
 
   #GET PAGE FOR NEW MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/new' do
-    if Helpers.is_logged_in?(session)
+    if current_user
       @user = User.find_by_slug(params[:slug])
-      @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:id])
-      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
+      if @current_user.id == @user.id && @user.car_ids.include?(@car.id)
+        @maintenances = Maintenance.select_user_maintenance(@user)
         erb :'/users/cars/maintenance/new'
       else
         redirect "/users/#{@current.slug}"
@@ -21,11 +21,10 @@ class MaintenancesController < ApplicationController
 
   #CREATE NEW MAINTENANCE TASK
   post '/users/:slug/cars/:id/maintenance' do
-    if Helpers.is_logged_in?(session)
+    if current_user
       @user = User.find_by_slug(params[:slug])
-      @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:id])
-      if @current.id == @user.id && @user.car_ids.include?(@car.id) 
+      if @current_user.id == @user.id && @user.car_ids.include?(@car.id) 
         params[:maintenance].each do |maintenance|
           if maintenance[:name] == "" || maintenance[:date] == "" || maintenance[:miles] == ""
             next
@@ -44,12 +43,11 @@ class MaintenancesController < ApplicationController
 
   #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
   get '/users/:slug/cars/:id/maintenance/:id' do
-    if Helpers.is_logged_in?(session)
+    if current_user
       @user = User.find_by_slug(params[:slug])
-      @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:captures][1])
       @maintenance = Maintenance.find_by(id: params[:captures][2])
-      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
+      if valid_user_maintenances
         erb :'/users/cars/maintenance/edit'
       else
         redirect "/users/#{@current.slug}"
@@ -59,7 +57,7 @@ class MaintenancesController < ApplicationController
     end
   end
 
-  #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK
+  #GET EDIT PAGE FOR INDIVIDUAL MAINTENANCE TASK - REDIRECT
   get '/users/:slug/cars/:id/maintenance/:id/edit' do
     if Helpers.is_logged_in?(session)
       redirect '/users/:slug/cars/:id/maintenance/:id'
@@ -70,12 +68,11 @@ class MaintenancesController < ApplicationController
 
   #UPDATE INDIVIDUAL MAINTENANCE TASK
   patch '/users/:slug/cars/:id/maintenance/:id' do
-    if Helpers.is_logged_in?(session)
+    if current_user
       @user = User.find_by_slug(params[:slug])
-      @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:captures][1])
       @maintenance = Maintenance.find_by(id: params[:captures][2])
-      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id) 
+      if valid_user_maintenances
         if params[:maintenance][:name] == "" || params[:maintenance][:date] == ""
           redirect "/users/#{@user.slug}/cars/#{@car.id}"
         end
@@ -91,12 +88,11 @@ class MaintenancesController < ApplicationController
 
   #DELETE INDIVIDUAL MAINTENANCE TASK
   delete '/users/:slug/cars/:id/maintenance/:id/delete' do
-    if Helpers.is_logged_in?(session)
+    if current_user
       @user = User.find_by_slug(params[:slug])
-      @current = Helpers.current_user(session)
       @car = Car.find_by(id: params[:captures][1])
       @maintenance = Maintenance.find_by(id: params[:captures][2])
-      if @current.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
+      if valid_user_maintenances
         @maintenance.delete
         redirect "/users/#{@user.slug}/cars/#{@car.id}"
       else
@@ -106,5 +102,10 @@ class MaintenancesController < ApplicationController
       redirect "/login"
     end
   end
+
+  private
+    def valid_user_maintenances
+      @current_user.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
+    end
 
 end

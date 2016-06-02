@@ -30,7 +30,7 @@
         </thead>
         <tbody>
 
-          <% @car.maintenances.reverse.each do |maintenance| %>
+          <% @car_maintenances.each do |maintenance| %>
             <tr>
               <td> <%= maintenance.id %> </td>
               <td> <%= maintenance.name %> </td>
