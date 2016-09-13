@@ -107,5 +107,4 @@ class MaintenancesController < ApplicationController
     def valid_user_maintenances
       @current_user.id == @user.id && @user.car_ids.include?(@car.id) && @car.maintenance_ids.include?(@maintenance.id)
     end
-
 end
